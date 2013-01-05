@@ -34,6 +34,7 @@
 
 #include "i2c_blinkm.h"
 #include "blinkm_regs.h"
+#include "utility.h"
 
 struct cmd {
 	char _cmd[32];
@@ -678,6 +679,8 @@ void scan_bus_for_leds()
 	printf("\nScanning I2C bus for BlinkM devices...\n");
 
 	for (led = 1; led < 128; led++) {
+		msleep(100);
+
 		firmware = blinkm_get_firmware_version(led, 0);
 
 		if (firmware < 1)
@@ -692,7 +695,6 @@ void scan_bus_for_leds()
 					led, led, firmware);
 			
 		count++;
-		
 	}
 
 	if (count == 1) 
