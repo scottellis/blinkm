@@ -679,7 +679,7 @@ void scan_bus_for_leds()
 	printf("\nScanning I2C bus for BlinkM devices...\n");
 
 	for (led = 1; led < 128; led++) {
-		msleep(100);
+		msleep(20);
 
 		firmware = blinkm_get_firmware_version(led, 0);
 
