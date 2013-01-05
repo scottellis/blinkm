@@ -10,10 +10,11 @@ The i2c-dev driver exposes i2c busses to user programs as /dev/i2c-* entries.
 To avoid having to specify the i2c bus on every run of the program, the bus 
 number is hard coded in i2c_functions.c
 
-The default configuration assumes a Gumstix Overo board using /dev/i2c-3.
+The default assumes a Raspberry Pi v1 board using /dev/i2c-0
 
-If you are using an RPi or another embedded Linux system, then edit 
-i2c_functions.c before building. 
+If you are using a v2 RPi board or a Gumstix Overo or other embedded 
+Linux system with i2c drivers built in, then edit i2c_functions.c 
+appropriately before building. 
 
 The required change should be self-explanatory.
 
@@ -23,8 +24,8 @@ The required change should be self-explanatory.
 
 There is a make file for building the project.
 
-        $ git pull git://github.com/scottellis/overo-blinkm.git
-        $ cd overo-blinkm
+        $ git pull git://github.com/scottellis/blinkm.git
+        $ cd blinkm
         $ <optional> edit i2c_functions.c
         $ make
 
