@@ -38,15 +38,16 @@
 
 // Uncomment one of these definitions or create a new one
 //#define GUMSTIX_OVERO
-#define RASPBERRYPI_v1
+//#define RASPBERRYPI_v1
 //#define RASPBERRYPI_v2
+#define RPI2
 
 
 #if defined GUMSTIX_OVERO
 static char i2c_bus[] = "/dev/i2c-3";
 #elif defined RASPBERRYPI_v1
 static char i2c_bus[] = "/dev/i2c-0";
-#elif defined RASPBERRYPI_v2
+#elif defined RASPBERRYPI_v2 || defined RPI2
 static char i2c_bus[] = "/dev/i2c-1";
 #else
 #error "I2C bus definition needed!"

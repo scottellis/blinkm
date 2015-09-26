@@ -1,5 +1,4 @@
-  Overview
---------
+### Overview
 
 A command line program for controlling BlinkM leds connected to the I2C bus 
 of a embedded Linux machine. 
@@ -10,17 +9,18 @@ The i2c-dev driver exposes i2c busses to user programs as /dev/i2c-* entries.
 To avoid having to specify the i2c bus on every run of the program, the bus 
 number is hard coded in i2c_functions.c
 
-The default assumes a Raspberry Pi v1 board using /dev/i2c-0
+The default assumes a Raspberry Pi 2 board using /dev/i2c-1
 
-If you are using a v2 RPi board or a Gumstix Overo or other embedded 
+If you are using a v1 RPi board or a Gumstix Overo or other embedded 
 Linux system with i2c drivers built in, then edit i2c_functions.c 
 appropriately before building. 
 
-The required change should be self-explanatory.
+The required change should be self-explanatory. You need to tell the
+software what `/dev/i2c-X` bus to use. It's hard-coded so you don't
+have to specify it on every use.
 
 
-  Building
---------
+### Building
 
 There is a make file for building the project.
 
@@ -30,8 +30,7 @@ There is a make file for building the project.
         $ make
 
 
-  Running
---------
+### Running
 
 RPi kernels might not load the i2c drivers automatically. If you are
 running the Debian Wheezy image, you can add the following two lines
@@ -42,10 +41,13 @@ to /etc/modules
 
 Gumstix kernels load the i2c drivers by default.
 
-You will need to change permissions for /dev/i2c-* device if you are
+You might need to change permissions for /dev/i2c-* device if you are
 running blinkm as someone other then root.
 
-A one-time fix is to run the following as root (Gumstix example)
+The current RPI Raspbian O/S adds the *pi* user to the *i2c* group so
+there should not be any permission problems.
+
+On other O/Ses, a one-time fix is to run the following as root (Gumstix example)
 
         chmod 0666 /dev/i2c-3
 
@@ -102,8 +104,7 @@ The first command you probably want to run is find-leds.
 
 
 
-  TODO
---------
+### TODO
 
 1. Write script function hasn't been tested much.
 
